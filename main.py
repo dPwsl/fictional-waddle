@@ -1,14 +1,14 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import *
 
-app=Ursina()
+
 
 def  makemap(St,Map,A):
     for i in range(len(St)):
         for j in range(len(St[i])):
             for k in range(len(St[i][j])):
                 if St[i][j][k]==3:
-                    win=Entity(
+                    a=Entity(
                     model='cube',
                     position=(j+A,i,k),
                     scale=(1,1,1),
@@ -28,14 +28,11 @@ def  makemap(St,Map,A):
         color=color.dark_gray,
         model='cube'   
     )
-    return win
 
 player=FirstPersonController(
     model='cube',
-    collider='box',
     color=color.light_gray
 ) #기본적인 플래이어
-
 
 
 ground=Entity(              #태스트용 땅 생성
@@ -96,11 +93,9 @@ A=[]
 l=makemap(St1,100,0)
 A.append(l)
 pl=(0,10,0)
-
 def update():
     if player.position.y<-20:
         player.position=pl
         player.rotation=(0,90,0)
-
 
 app.run()
